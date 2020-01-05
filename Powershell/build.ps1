@@ -1,7 +1,7 @@
 . $PSScriptRoot/common.ps1
 
-echo "$BuildCommonPath\Msbuild.props\Abbotware.Metadata.props"
-Get-Content "$BuildCommonPath\Msbuild.props\Abbotware.Metadata.props" | foreach {Write-Output $_}
+echo "$BuildCommonPath\Msbuild.props\Abbotware.Settings.Metadata.props"
+Get-Content "$BuildCommonPath\Msbuild.props\Abbotware.Settings.Metadata.props" | foreach {Write-Output $_}
 
 foreach ($P in $Projects.Keys ) {
 	$Project = $Projects[$P]

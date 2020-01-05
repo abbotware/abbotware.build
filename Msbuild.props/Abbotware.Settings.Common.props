@@ -22,6 +22,10 @@
     <BuildCommonDir Condition=" '$(BuildCommonDir)' == '' ">$(BuildRootDir)Common/</BuildCommonDir>
     <BuildRulesetsDir Condition=" '$(BuildRulesetsDir )' == '' ">$(BuildCommonDir)Rulesets/</BuildRulesetsDir>
     <ThirdpartyRootDir Condition=" '$(ThirdpartyRootDir)' == '' ">$(SourceRootDir)thirdparty/</ThirdpartyRootDir>
+    <TargetRootDir Condition=" '$(TargetRootDir)' == '' ">$(SourceRootDir)_Target/</TargetRootDir>
+    <TestResultsRootDir Condition=" '$(TestResultsRootDir)' == '' ">$(TargetRootDir)TestResults/</TestResultsRootDir>
+    <CodeCoverageRootDir Condition=" '$(CodeCoverageRootDir)' == '' ">$(TargetRootDir)CodeCoverage/</CodeCoverageRootDir>
+
   </PropertyGroup>
 
   <Import Project="Abbotware.Settings.Metadata.props" />

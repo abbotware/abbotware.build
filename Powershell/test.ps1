@@ -23,7 +23,7 @@ foreach ($P in $Projects.Keys ) {
 
     $TrxFile =  $Tuple + ".trx"
     $XmlFile =  $Tuple + ".xml"
-    $CoverageDataFile = $Tuple + "coverage.xml"
+    $CoverageDataFile = $Tuple + ".coverage"
 
     Write-Host "$testtype : $Tuple"
     #dotnet vstest _Target\Release\win-x64\netcoreapp2.2\Abbotware.UnitTests\Abbotware.UnitTests.dll --logger:"trx;LogFileName=Abbotware.UnitTests.trx" --ResultsDirectory:_Target/TestResults
@@ -60,7 +60,7 @@ foreach ($P in $Projects.Keys ) {
 		echo "EXIT_CODE=$EXIT_CODE"
     }
 
-    dotnet reportgenerator -reports:$TestResultsPath$CoverageDataFile -targetdir:$CodeCoveragePath$Name\
+    dotnet reportgenerator -reports:$TestResultsPath*coverage* -targetdir:$CodeCoveragePath$Name\
 
     # disable for now - there is a bug in the code coverage tool which means the output file is sometimes never generated
 	#if (!$?) {

@@ -5,7 +5,7 @@
   
     <!-- NUGET Related -->
     <PackageOutputPath Condition="'$(GeneratePackageOnBuild)' == 'true'">$(SourceRootDir)_Target/$(Configuration)/nuget</PackageOutputPath>
-    <!-- <IncludeSymbols Condition="'$(GeneratePackageOnBuild)' == 'true'">true</IncludeSymbols> -->
+    <IncludeSymbols Condition="'$(GeneratePackageOnBuild)' == 'true'">false</IncludeSymbols>
     <!-- <IncludeSource Condition="'$(GeneratePackageOnBuild)' == 'true'">true</IncludeSource> -->
 
   </PropertyGroup>

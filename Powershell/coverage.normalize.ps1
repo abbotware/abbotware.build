@@ -7,16 +7,18 @@ if (!$?) {
  	
 if ($ActiveRuntime -ne "Windows_NT") 
 {
-	$searchPath = $TestResultsPath + "/*linux*coverage.xml"
+	$searchPath = $TestResultsPath + "/*linux*coverage*.xml"
 	$toFind = "/var/lib/go-agent/pipelines/"
+	$toFind2 = "var/lib/go-agent/pipelines/"
 	$toReplace = "G:\go\pipelines\"
 	$slashFind = '/'
 	$slashReplace = '\'
 } 
 else 
 {
-	$searchPath = $TestResultsPath + "*win-x64*coverage.xml"
+	$searchPath = $TestResultsPath + "*win-x64*coverage*.xml"
 	$toFind = "G:\go\pipelines\"
+	$toFind2 = ""
 	$toReplace = "/var/lib/go-agent/pipelines/"
 	$slashFind = '\'
 	$slashReplace = '/'
@@ -38,6 +40,7 @@ foreach($file in $files)
 	{
 		$original = $node.attributes['filename'].value
 		$original = $original.Replace($toFind ,"");
+		$original = $original.Replace($toFind2 ,"");
 		$original = $original.Replace($slashFind ,$slashReplace);
 				
 		$normalize = [System.IO.Path]::Combine($toReplace, $original);
