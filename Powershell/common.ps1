@@ -54,7 +54,7 @@ If(!(Test-Path -Path $LogPath))
 {
 	Write-Host "Log Folder Does Not Exist :$LogPath"
 	New-Item -ItemType Directory -Force -Path $LogPath
-	New-Item -ItemType File -Path $LogPath empty.log 
+	New-Item -ItemType File -Path $LogPath -Name empty.log 
 } else 
 {
 	Write-Host "Log Folder Exists :$LogPath"
