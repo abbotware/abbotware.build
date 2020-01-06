@@ -40,6 +40,8 @@ $LogPath               = $BuildTargetPath + "Logs/"
 $CodeCoveragePath      = $BuildTargetPath + "CodeCoverage/"
 $TestResultsPath       = $BuildTargetPath + "TestResults/"
 
+
+
 if ($ENV:OS -eq "Windows_NT") {
 $ActiveRuntime	       = "win-x64"
 $TestFilter 		   = "Category!=linux"
@@ -48,9 +50,14 @@ $ActiveRuntime	       = "linux-x64"
 $TestFilter 		   = "Category!=windows"
 }
 
-If(!(test-path $LogPath))
+If(!(Test-Path -Path $LogPath))
 {
-      New-Item -ItemType Directory -Force -Path $LogPath
+	Write-Host "Log Folder Does Not Exist :$LogPath"
+	New-Item -ItemType Directory -Force -Path $LogPath
+	New-Item -ItemType File -Path $LogPath empty.log 
+} else 
+{
+	Write-Host "Log Folder Exists :$LogPath"
 }
 
 if (Test-Path env:\NUGET_UPGRADE_FILTER)
