@@ -26,20 +26,23 @@ foreach ($P in $Projects.Keys ) {
 	if ($Action -eq "publish") 
 	{
 		Write-Host "Publish: $Tuple) to $Output"
-		dotnet publish $Source -c $Configuration -r $Runtime -f $Framework -o $Output -flp1:logfile=$ErrorsLogFile -flp1:errorsonly -flp2:logfile=$WarningsLogFile -flp2:warningsonly
+		dotnet publish $Source -c $Configuration -r $Runtime -f $Framework -o $Output
 	}
 
 	if ($Action -eq "build") 
 	{
 		Write-Host "Build: $Tuple)"
-		dotnet build $Source -c $Configuration -flp1:logfile=$ErrorsLogFile -flp1:errorsonly -flp2:logfile=$WarningsLogFile -flp2:warningsonly
+		dotnet build $Source -c $Configuration
 	}
 
-	if (!$?) {
+	if (!$?) 
+	{
 		$EXIT_CODE=1
 	}
 }
 
-echo "Exit build.ps1 with $EXIT_CODE"
+#delete files of zero length
+Get-ChildItem -Path $LogPath | Where { $_.Length -eq 0 } | Remove-Item -Force
 
+echo "Exit build.ps1 with $EXIT_CODE"
 Exit $EXIT_CODE
