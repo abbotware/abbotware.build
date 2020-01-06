@@ -40,9 +40,6 @@ foreach ($P in $Projects.Keys ) {
 	}
 }
 
-#delete files of zero length
-Get-ChildItem -Path $LogPath | Where { $_.Length -eq 0 } | Remove-Item -Force
-
 echo "Exit build.ps1 with $EXIT_CODE"
 
 Exit $EXIT_CODE
