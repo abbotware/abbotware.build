@@ -54,11 +54,11 @@ If(!(Test-Path -Path $LogPath))
 {
 	Write-Host "Log Folder:$LogPath - DOES NOT EXIST"
 	New-Item -ItemType Directory -Force -Path $LogPath
-	New-Item -ItemType File -Path $LogPath -Name empty.log -Force 
+	New-Item -ItemType File -Path $LogPath -Name empty.log -Force  -Value "test" 
 } else 
 {
 	Write-Host "Log Folder:$LogPath - EXISTS"
-	New-Item -ItemType File -Path $LogPath -Name empty.log -Force
+	New-Item -ItemType File -Path $LogPath -Name empty.log -Force  -Value "test"
 }
 
 if (Test-Path env:\NUGET_UPGRADE_FILTER)
