@@ -10,7 +10,7 @@
   <Import Project="Abbotware.Settings.Common.props" />
 
   <ItemGroup>
-    <PackageReference Include="coverlet.msbuild" Version="2.7.54-g81daeb8959">
+    <PackageReference Include="coverlet.msbuild" Version="2.8.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
