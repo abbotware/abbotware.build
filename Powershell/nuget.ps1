@@ -4,11 +4,18 @@ Write-Host "Push Nugets to $NugetPublishUrl"
 
 if (-Not (Test-Path env:\NUGET_API_KEY))
 {
-	Write-Host "ERRRO NUGET_API_KEY NOT SET"
+	Write-Host "Error NUGET_API_KEY not set"
 	Exit 1
 }
 
-dotnet nuget push _Target\Release\nuget\*.nupkg -k $env:NUGET_API_KEY -s $NugetPublishUrl
+if (-Not (Test-Path env:\NUGET_API_KEY))
+{
+	Write-Host "Error NUGET_PUBLISH_URL not set"
+	Exit 1
+}
+
+
+dotnet nuget push _Target\Release\nuget\*.nupkg -k $env:NUGET_API_KEY -s $env:NUGET_PUBLISH_URL
 
 if (!$?) {
     $EXIT_CODE=1
