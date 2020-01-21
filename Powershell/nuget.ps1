@@ -1,7 +1,5 @@
 . $PSScriptRoot/common.ps1
 
-Write-Host "Push Nugets to $NugetPublishUrl"
-
 if (-Not (Test-Path env:\NUGET_API_KEY))
 {
 	Write-Host "Error NUGET_API_KEY not set"
@@ -14,6 +12,7 @@ if (-Not (Test-Path env:\NUGET_API_KEY))
 	Exit 1
 }
 
+Write-Host "Push Nugets to $env:NUGET_PUBLISH_URL"
 
 dotnet nuget push _Target\Release\nuget\*.nupkg -k $env:NUGET_API_KEY -s $env:NUGET_PUBLISH_URL
 
