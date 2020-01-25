@@ -19,15 +19,15 @@ foreach ($P in $Projects.Keys ) {
     $Framework = $Project.Framework
     $Configuration = $Project.Configuration
 	$NetCoreSdk = $Project.NetCoreSdk
+	
+	
 	$Tuple = "$Name.$Configuration.$Runtime.$Framework"
 
     $TrxFile =  $Tuple + ".trx"
     $XmlFile =  $Tuple + ".xml"
-    $CoverageDataFile = $Tuple + ".coverage"
+    $CoverageDataFile = $Tuple + ".coverage.xml"
 
     Write-Host "$testtype : $Tuple"
-    #dotnet vstest _Target\Release\win-x64\netcoreapp2.2\Abbotware.UnitTests\Abbotware.UnitTests.dll --logger:"trx;LogFileName=Abbotware.UnitTests.trx" --ResultsDirectory:_Target/TestResults
-    #/p:ExcludeByFile="$cwd/FOLDER/Connected Services/**/*.cs%2c$cwd/FOLDER/Connected Services/**/*.cs"
 
 	if ($NetCoreSdk) {
 		dotnet new globaljson --sdk-version $NetCoreSdk --force 
