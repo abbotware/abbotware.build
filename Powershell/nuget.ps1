@@ -6,7 +6,7 @@ if (-Not (Test-Path env:\NUGET_API_KEY))
 	Exit 1
 }
 
-if (-Not (Test-Path env:\NUGET_API_KEY))
+if (-Not (Test-Path env:\NUGET_PUBLISH_URL))
 {
 	Write-Host "Error NUGET_PUBLISH_URL not set"
 	Exit 1
