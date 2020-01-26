@@ -1,10 +1,13 @@
 . $PSScriptRoot/common.ps1
 
-cd Build\Common\DotNetCliTools
+dotnet tool update -g dotnet-reportgenerator-globaltool
 
-dotnet restore
+if (!$?) {
+	$EXIT_CODE=1
+	echo "EXIT_CODE=$EXIT_CODE"
+}
 
-dotnet reportgenerator "-reports:$TestResultsPath/*coverage*.xml" -targetdir:$CodeCoveragePath$Name\ "-sourcedirs:$SourcePath" -assemblyfilters:$ReportGeneratorAssemblyFilters
+reportgenerator "-reports:$TestResultsPath/*coverage*.xml" -targetdir:$CodeCoveragePath$Name\ "-sourcedirs:$SourcePath" -assemblyfilters:$ReportGeneratorAssemblyFilters
 
 if (!$?) {
 	$EXIT_CODE=1

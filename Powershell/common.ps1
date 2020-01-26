@@ -24,7 +24,10 @@ $PACKAGE_VERSION = ($a.Split('.')[0], $a.Split('.')[1], $a.Split('.')[2])  -join
 write GO_PIPELINE_LABEL:$env:GO_PIPELINE_LABEL
 write PACKAGE_VERSION:$PACKAGE_VERSION
 
+if ([System.IO.File]::Exists($PSScriptRoot + "/../../config.ps1")) 
+{
 . $PSScriptRoot/../../config.ps1
+}
 
 $SourcePath			   = $CWD
 Set-Item env:SourcePath $SourcePath
