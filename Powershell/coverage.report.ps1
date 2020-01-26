@@ -4,7 +4,7 @@ cd Build\Common\DotNetCliTools
 
 dotnet restore
 
-dotnet reportgenerator "-reports:$TestResultsPath/*coverage*.xml" -targetdir:$CodeCoveragePath$Name\ "-sourcedirs:$SourcePath" -assemblyfilters:$CodeCoverageExcludeAssemblies
+dotnet reportgenerator "-reports:$TestResultsPath/*coverage*.xml" -targetdir:$CodeCoveragePath$Name\ "-sourcedirs:$SourcePath" -assemblyfilters:$ReportGeneratorAssemblyFilters
 
 if (!$?) {
 	$EXIT_CODE=1

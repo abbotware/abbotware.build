@@ -1,5 +1,3 @@
-. $PSScriptRoot/common.ps1
-
 dotnet nuget locals http-cache --clear
 
 if (!$?) {
