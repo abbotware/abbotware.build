@@ -36,7 +36,7 @@ foreach ($P in $Projects.Keys ) {
 
 		if (!$?) {
 			$EXIT_CODE=1
-			echo "EXIT_CODE=$EXIT_CODE"
+			echo "dotnet new EXIT_CODE=$EXIT_CODE"
 		}	
 	}
 
@@ -44,31 +44,24 @@ foreach ($P in $Projects.Keys ) {
 
     if (!$?) {
         $EXIT_CODE=1
-		echo "EXIT_CODE=$EXIT_CODE"
+		echo "dotnet test EXIT_CODE=$EXIT_CODE"
     }
 
     $xslt = New-Object System.Xml.Xsl.XslCompiledTransform;
     $xslt.load( "$BuildCommonPath/Xslt/trx-to-junit.xslt" )
     $xslt.Transform( $TestResultsPath + $TrxFile, $TestResultsPath + $XmlFile )
+	
+	if (!$?) {
+		$EXIT_CODE=1
+		echo "xslt EXIT_CODE=$EXIT_CODE"
+	}	
+}
 
-    cd Build\Common\DotNetCliTools
+. $PSScriptRoot/coverage.report.ps1
 
-    dotnet restore
-
-    if (!$?) {
-        $EXIT_CODE=1
-		echo "EXIT_CODE=$EXIT_CODE"
-    }
-
-    dotnet reportgenerator -reports:$TestResultsPath*coverage* -targetdir:$CodeCoveragePath$Name\
-
-    # disable for now - there is a bug in the code coverage tool which means the output file is sometimes never generated
-	#if (!$?) {
-    #    $EXIT_CODE=1
-	#	echo "EXIT_CODE=$EXIT_CODE"
-    #}
-
-    cd $CWD 
+if (!$?) {
+	$EXIT_CODE=1
+	echo "coverage.report.ps1 EXIT_CODE=$EXIT_CODE"
 }
 
 echo "Exit test.ps1 with $EXIT_CODE"
