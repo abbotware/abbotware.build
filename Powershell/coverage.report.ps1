@@ -19,7 +19,7 @@ if ($ActiveRuntime -eq "linux-x64")
 		echo "dotnet restore EXIT_CODE=$EXIT_CODE"
     }
 
-    dotnet reportgenerator -reports:$TestResultsPath*coverage* -targetdir:$CodeCoveragePath$Name\
+    dotnet reportgenerator -reports:$TestResultsPath/*coverage*.xml -targetdir:$CodeCoveragePath$Name\ -sourcedirs:$SourcePath -assemblyfilters:$ReportGeneratorAssemblyFilters
 
 	if (!$?) {
         $EXIT_CODE=1
