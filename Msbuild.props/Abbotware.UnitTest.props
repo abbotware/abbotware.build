@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
     <CodeAnalysisRuleSet>Abbotware.UnitTest.ruleset</CodeAnalysisRuleSet>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <NoWarn>CS1591</NoWarn>
