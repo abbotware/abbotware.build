@@ -21,7 +21,13 @@ if (!$?) {
 	$EXIT_CODE=1
 }
 
-dotnet eb package -cfg Build/Configuration/Prod/Aws.Deploy/$EbsProject.json
+dotnet tool list -g
+
+if (!$?) {
+	$EXIT_CODE=1
+}
+
+dotnet-eb package -cfg Build/Configuration/Prod/Aws.Deploy/$EbsProject.json
 
 if (!$?) {
 	$EXIT_CODE=1
