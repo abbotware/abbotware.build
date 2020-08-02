@@ -43,6 +43,9 @@ $LogPath               = $BuildTargetPath + "Logs/"
 $CodeCoveragePath      = $BuildTargetPath + "CodeCoverage/"
 $TestResultsPath       = $BuildTargetPath + "TestResults/"
 
+$ProfilePath           = $env:USERPROFILE
+$DotNetToolsPath       = $ProfilePath + "/.dotnet/tools"
+$AwsEbToolPath         = $DotNetToolsPath + "/dotnet-eb"
 
 
 if ($ENV:OS -eq "Windows_NT") {
