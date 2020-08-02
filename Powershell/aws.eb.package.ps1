@@ -27,7 +27,16 @@ if (!$?) {
 	$EXIT_CODE=1
 }
 
-dotnet-eb package -cfg Build/Configuration/Prod/Aws.Deploy/$EbsProject.json
+
+$ProfilePath = $env:USERPROFILE
+$ToolsPath = $ProfilePath + "/.dotnet/tools"
+$DotNetEbToolPath = $ToolsPath + "/dotnet-eb"
+write $DotNetEbToolPath
+
+$DotNetEbToolPathCmd = $DotNetEbToolPath + " package -cfg Build/Configuration/Prod/Aws.Deploy/" + $EbsProject + ".json"
+write $DotNetEbToolPathCmd
+
+Invoke-Expression $DotNetEbToolPathCmd
 
 if (!$?) {
 	$EXIT_CODE=1
