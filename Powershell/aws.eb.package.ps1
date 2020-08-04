@@ -27,7 +27,7 @@ if (!$?) {
 	$EXIT_CODE=1
 }
 
-$AwsEbCmd = $AwsEbToolPath + " package -cfg Build/Configuration/Prod/Aws.Deploy/" + $EbsProject + ".json"
+$AwsEbCmd = "$($AwsEbToolPath) package -cfg Build/Configuration/Prod/Aws.Deploy/$($EbsProject).json"
 write $AwsEbCmd
 
 Invoke-Expression $AwsEbCmd

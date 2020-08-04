@@ -37,15 +37,15 @@ $BuildTargetPath            = $CWD + "_Target/"
 Set-Item env:BuildTargetPath $BuildTargetPath
 Write-Host "BuildTargetPath:" $env:BuildTargetPath
 
-$BuildRootPath         = $CWD + "Build/"
-$BuildCommonPath       = $BuildRootPath + "Common/"
-$LogPath               = $BuildTargetPath + "Logs/"
-$CodeCoveragePath      = $BuildTargetPath + "CodeCoverage/"
-$TestResultsPath       = $BuildTargetPath + "TestResults/"
+$BuildRootPath            = $CWD + "Build/"
+$BuildCommonPath          = $BuildRootPath + "Common/"
+$LogPath                  = $BuildTargetPath + "Logs/"
+$CodeCoveragePath         = $BuildTargetPath + "CodeCoverage/"
+$TestResultsPath          = $BuildTargetPath + "TestResults/"
 
-$ProfilePath           = $env:USERPROFILE
-$DotNetToolsPath       = $ProfilePath + "/.dotnet/tools"
-$AwsEbToolPath         = $DotNetToolsPath + "/dotnet-eb"
+$ProfilePath              = $env:USERPROFILE
+$DotNetToolsPath          = $ProfilePath + "/.dotnet/tools"
+$AwsEbToolPath            = $DotNetToolsPath + "/dotnet-eb"
 
 
 if ($ENV:OS -eq "Windows_NT") {

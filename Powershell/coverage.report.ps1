@@ -1,5 +1,6 @@
 . $PSScriptRoot/common.ps1
 
+dotnet tool update -g dotnet-reportgenerator-globaltool
 
 if (!$?) {
 	$EXIT_CODE=1
@@ -26,18 +27,20 @@ if ($ActiveRuntime -eq "linux-x64")
 		echo "dotnet reportgenerator EXIT_CODE=$EXIT_CODE"
     }
 
-
 	cd $SourcePath	 
 } 
 else 
 {
-	dotnet tool update -g dotnet-reportgenerator-globaltool
-	reportgenerator -reports:$TestResultsPath/*coverage*.xml -targetdir:$CodeCoveragePath$Name\ -sourcedirs:$SourcePath -assemblyfilters:$ReportGeneratorAssemblyFilters
-}
-
-if (!$?) {
-	$EXIT_CODE=1
-	echo "reportgenerator EXIT_CODE=$EXIT_CODE"
+	$ReportGeneratorToolPath  = $DotNetToolsPath + "/reportgenerator.exe"
+	$ReportCmd = "$($ReportGeneratorToolPath) -reports:$($TestResultsPath)/*coverage*.xml -targetdir:$($CodeCoveragePath)$($Name)\ -sourcedirs:$($SourcePath) -assemblyfilters:$($ReportGeneratorAssemblyFilters)"
+    Write-Host($ReportCmd)
+	
+    Invoke-Expression $ReportCmd
+	
+    if (!$?) {
+	    $EXIT_CODE=1
+	    echo "ReportCmd EXIT_CODE=$EXIT_CODE"
+    }
 }
 
 
