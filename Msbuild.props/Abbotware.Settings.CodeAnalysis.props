@@ -5,6 +5,7 @@
     <CodeAnalysisRuleSet>$(BuildRulesetsDir)$(CodeAnalysisRuleSet)</CodeAnalysisRuleSet>
 	<EnableNETAnalyzers>true</EnableNETAnalyzers>
 	<AnalysisLevel>latest</AnalysisLevel>
+	<AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
