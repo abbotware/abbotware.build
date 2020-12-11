@@ -92,4 +92,9 @@
     <Rule Id="CA1305" Action="None" />
     <Rule Id="CA2008" Action="None" />
   </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.NetAnalyzers" RuleNamespace="Microsoft.CodeAnalysis.NetAnalyzers">
+    <Rule Id="CA1002" Action="None" />
+    <Rule Id="CA1708" Action="None" />
+    <Rule Id="CA2201" Action="None" />
+  </Rules>
 </RuleSet>
