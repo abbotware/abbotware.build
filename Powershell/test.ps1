@@ -45,6 +45,7 @@ foreach ($P in $Projects.Keys ) {
     if (!$?) {
         $EXIT_CODE=1
 		echo "dotnet test EXIT_CODE=$EXIT_CODE"
+		Exit $EXIT_CODE
     }
 
     $xslt = New-Object System.Xml.Xsl.XslCompiledTransform;
