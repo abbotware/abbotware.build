@@ -3,14 +3,21 @@
 
   <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
     <CodeAnalysisRuleSet>$(BuildRulesetsDir)$(CodeAnalysisRuleSet)</CodeAnalysisRuleSet>
-	<EnableNETAnalyzers>true</EnableNETAnalyzers>
+	
 	<AnalysisLevel>latest</AnalysisLevel>
 	<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	
+    <RunAnalyzers>true</RunAnalyzers>  
+	<EnableNETAnalyzers>true</EnableNETAnalyzers>
+	<RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+	
+    <NoWarn Condition="'$(Nullable)' == 'enable'">$(NoWarn);CA1062</NoWarn>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
     <!-- STYLE COP ANALYZER -->
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.354" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.406" PrivateAssets="all" />
     
 	<!-- ALL ROSLYN ANALYZERS -->
 	<!-- https://github.com/dotnet/roslyn-analyzers -->

@@ -6,10 +6,13 @@
     <AssemblyInformationalVersion>0.0.0.0</AssemblyInformationalVersion>
     <FileVersion>0.0.0.0</FileVersion>
     <Version>0.0.0.0</Version>
+    <Company>Abbotware, LLC</Company>
+    <Product>Abbotware Core Libraries</Product>
+    <Copyright>Copyright © $([System.DateTime]::UtcNow.Year)</Copyright>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
-    <Compile Include="$(BuildRootDir)CommonAssemblyInfo.cs" >
+    <Compile Include="$(BuildRootDir)CommonAssemblyInfo.cs" Condition="Exists('$(BuildRootDir)CommonAssemblyInfo.json')">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>

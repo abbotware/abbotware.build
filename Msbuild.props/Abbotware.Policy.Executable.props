@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+	<UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+
+  <Import Project="Abbotware.Settings.Common.props" />
+  <Import Project="Abbotware.Settings.Nuget.props" />
+
+</Project>

@@ -4,15 +4,24 @@
   <PropertyGroup>
     <Platforms>AnyCPU</Platforms>
     <LangVersion>latest</LangVersion>
-    <!-- <Nullable>enable</Nullable> -->
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <!-- <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies> -->
+	<FileAlignment>512</FileAlignment>
+	<Prefer32Bit>false</Prefer32Bit>
+	<Deterministic>true</Deterministic>
+    <Nullable Condition="'$(Nullable)' == ''">enable</Nullable>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <!-- STRONG NAME SIGNING-->
+  <PropertyGroup Condition="Exists('$(BuildRootDir)StrongName.snk')">
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(BuildRootDir)StrongName.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
 </Project>
