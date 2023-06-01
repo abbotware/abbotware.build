@@ -6,11 +6,18 @@
     <LangVersion>latest</LangVersion>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <!--compiler-generated source, like AssemblyInfo, are included in the PDB.-->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <FileAlignment>512</FileAlignment>
     <Prefer32Bit>false</Prefer32Bit>
     <Deterministic>true</Deterministic>
     <Nullable Condition="'$(Nullable)' == ''">enable</Nullable>
     <GenerateSerializationAssemblies>off</GenerateSerializationAssemblies>
+
+    <!--only for CI Builds -->
+    <!--https://github.com/clairernovotny/DeterministicBuilds-->
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+    <ContinuousIntegrationBuild Condition="'$(TF_BUILD)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
