@@ -6,8 +6,13 @@
     <!-- NUGET Related -->
     <PackageOutputPath Condition="'$(GeneratePackageOnBuild)' == 'true'">$(SourceRootDir)_Target/$(Configuration)/nuget</PackageOutputPath>
     <IncludeSymbols Condition="'$(GeneratePackageOnBuild)' == 'true'">false</IncludeSymbols>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <!-- <IncludeSource Condition="'$(GeneratePackageOnBuild)' == 'true'">true</IncludeSource> -->
 
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+  </ItemGroup>
 
 </Project>
