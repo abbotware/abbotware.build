@@ -3,7 +3,7 @@
 
   <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
     <CodeAnalysisRuleSet>Abbotware.UnitTest.ruleset</CodeAnalysisRuleSet>
-    <NoWarn>$(NoWarn);CS1591;CS8618;CA1014</NoWarn>
+    <NoWarn>$(NoWarn);CS1591;CS8618;CA1014;CA1852</NoWarn>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
