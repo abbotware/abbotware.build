@@ -12,7 +12,7 @@
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
 
-    <NoWarn Condition="'$(Nullable)' == 'enable'">$(NoWarn);CA1062</NoWarn>
+    <NoWarn Condition="'$(Nullable)' == 'enable'">$(NoWarn);CA1062;CA1515</NoWarn>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
