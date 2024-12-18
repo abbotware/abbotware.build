@@ -1,18 +1,31 @@
 <?xml version="1.0"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <PropertyGroup>
-  
-    <!-- NUGET Related -->
-    <PackageOutputPath Condition="'$(GeneratePackageOnBuild)' == 'true'">$(SourceRootDir)_Target/$(Configuration)/nuget</PackageOutputPath>
-    <IncludeSymbols Condition="'$(GeneratePackageOnBuild)' == 'true'">false</IncludeSymbols>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <!-- <IncludeSource Condition="'$(GeneratePackageOnBuild)' == 'true'">true</IncludeSource> -->
+	<PropertyGroup>
 
-  </PropertyGroup>
+		<!-- NUGET Related -->
+		<PackageOutputPath Condition="'$(GeneratePackageOnBuild)' == 'true'">$(SourceRootDir)_Target/$(Configuration)/nuget</PackageOutputPath>
+		<IncludeSymbols Condition="'$(GeneratePackageOnBuild)' == 'true'">false</IncludeSymbols>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<!-- <IncludeSource Condition="'$(GeneratePackageOnBuild)' == 'true'">true</IncludeSource> -->
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
-  </ItemGroup>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
+	</ItemGroup>
+
+
+	<PropertyGroup>
+		<!--First check for README.md in the Project Root Folder-->
+		<PackageReadmePath Condition="Exists('$(MSBuildProjectDirectory)\README.md')">$(MSBuildProjectDirectory)\README.md</PackageReadmePath>
+		<!--Fallback to the README.md in the Solution Root Folder-->
+		<PackageReadmePath Condition="Exists('$(MSBuildThisFileDirectory)\..\..\..\README.md') and '$(PackageReadmePath)' == ''">$(MSBuildThisFileDirectory)\..\..\..\README.md</PackageReadmePath>
+		<PackageReadmeFile Condition="'$(PackageReadmePath)' != ''">README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Condition="'$(PackageReadmePath)' != ''" Include="$(PackageReadmePath)" Pack="true" PackagePath="\" />
+	</ItemGroup>
 
 </Project>
