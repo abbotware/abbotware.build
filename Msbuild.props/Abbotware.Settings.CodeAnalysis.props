@@ -1,58 +1,64 @@
 <?xml version="1.0"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
-    <CodeAnalysisRuleSet>$(BuildRulesetsDir)$(CodeAnalysisRuleSet)</CodeAnalysisRuleSet>
+	<PropertyGroup Condition="'$(DisableSourceAnalysis)' == 'true'">
+		<RunAnalyzers>false</RunAnalyzers>
+		<EnableNETAnalyzers>false</EnableNETAnalyzers>
+		<RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+	</PropertyGroup>
 
-    <AnalysisLevel>latest</AnalysisLevel>
-    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	<PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+		<CodeAnalysisRuleSet>$(BuildRulesetsDir)$(CodeAnalysisRuleSet)</CodeAnalysisRuleSet>
 
-    <RunAnalyzers>true</RunAnalyzers>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+		<AnalysisLevel>latest</AnalysisLevel>
+		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 
-    <NoWarn Condition="'$(Nullable)' == 'enable'">$(NoWarn);CA1062;CA1515</NoWarn>
-  </PropertyGroup>
+		<RunAnalyzers Condition="'$(RunAnalyzers)' == ''">true</RunAnalyzers>
+		<EnableNETAnalyzers Condition="'$(EnableNETAnalyzers)' == ''">true</EnableNETAnalyzers>
+		<RunAnalyzersDuringBuild Condition="'$(RunAnalyzersDuringBuild)' == ''">true</RunAnalyzersDuringBuild>
+		<RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
 
-  <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
-    <!-- STYLE COP ANALYZER -->
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
+		<NoWarn Condition="'$(Nullable)' == 'enable'">$(NoWarn);CA1062;CA1515</NoWarn>
+	</PropertyGroup>
 
-    <!-- ALL ROSLYN ANALYZERS -->
-    <!-- https://github.com/dotnet/roslyn-analyzers -->
+	<ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+		<!-- STYLE COP ANALYZER -->
+		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
 
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+		<!-- ALL ROSLYN ANALYZERS -->
+		<!-- https://github.com/dotnet/roslyn-analyzers -->
 
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 
-    <PackageReference Include="Roslyn.Diagnostics.Analyzers" Version="3.3.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 
-    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+		<PackageReference Include="Roslyn.Diagnostics.Analyzers" Version="3.3.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 
-    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 
-    <!-- <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" /> -->
+		<PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 
-    <!-- STYLE COP CONFIG -->
-    <AdditionalFiles Include="$(BuildRootDir)stylecop.json" Condition="Exists('$(BuildRootDir)stylecop.json')" >
-      <Link>Properties\stylecop.json</Link>
-    </AdditionalFiles>
-  </ItemGroup>
+		<!-- <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" /> -->
+
+		<!-- STYLE COP CONFIG -->
+		<AdditionalFiles Include="$(BuildRootDir)stylecop.json" Condition="Exists('$(BuildRootDir)stylecop.json')" >
+			<Link>Properties\stylecop.json</Link>
+		</AdditionalFiles>
+	</ItemGroup>
 
 </Project>
