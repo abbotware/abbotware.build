@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <None Include="..\..\.editorconfig" Link=".editorconfig" />
+	  <None Include="..\..\global.json" Link="global.json" />
   </ItemGroup>
 
 </Project>
